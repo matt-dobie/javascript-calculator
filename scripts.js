@@ -1,3 +1,11 @@
+/*
+  Author: Matthew Dobie
+  Author URL: mattdobie.com
+  Description: Script for JavaScript Calculator
+*/
+
+
+// Main function
 $(document).ready(function() {
 
   var val;
@@ -44,7 +52,6 @@ $(document).ready(function() {
   var calculate = function(str) {
     str = str.replace(/x/g, "*");
     str = str.replace(/&divide;/g, "/");
-    console.log(str);
     return round(eval(str));
   };
 
@@ -135,7 +142,8 @@ $(document).ready(function() {
       update(current, expression);
     }
 
-    // Operations
+    /// Operations ///
+    // Addition
     if (val === "+" && canOperate) {
       canOperate = false;
       evaluated = false;
@@ -148,8 +156,8 @@ $(document).ready(function() {
       previous = expression;
     }
 
+    // Subtraction or negative numbers
     if (val === "-") {
-
       if (canOperate) {
         canOperate = false;
         evaluated = false;
@@ -167,11 +175,10 @@ $(document).ready(function() {
         current = val;
         expression += val;
         update(current, expression);
-        
       }
-      
     }
 
+    // Multiplication
     if (val === "*" && canOperate) {
       canOperate = false;
       evaluated = false;
@@ -184,6 +191,7 @@ $(document).ready(function() {
       previous = expression;
     }
 
+    // Division
     if (val === "/" && canOperate) {
       canOperate = false;
       evaluated = false;
@@ -196,10 +204,8 @@ $(document).ready(function() {
       previous = expression;
     }
 
-
     // Evaluate
     if (val === "=" && canOperate) {
-      console.log(expression);
       answer = calculate(expression);
       if (answer < 0) {
         negative = true;
